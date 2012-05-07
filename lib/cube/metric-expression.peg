@@ -195,6 +195,7 @@ literal
   = array_literal
   / string
   / number
+  / days_expression
   / "true" { return true; }
   / "false" { return false; }
 
@@ -280,3 +281,9 @@ _ "whitespace"
 
 whitespace
   = [ \t\n\r]
+
+days_expression
+ = "days[" a:number "]"
+ { 
+  return new Date(new Date().getTime() + (a*60*60*24*1000));
+ }
